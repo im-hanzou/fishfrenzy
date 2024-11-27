@@ -1,1 +1,3 @@
+#PLEASE REMOVE, JUST EXAMPLE
 http://username:pass@ip:port
+http://ip:port
