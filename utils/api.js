@@ -28,9 +28,9 @@ export async function getUserInfo(token, proxy) {
     return null;
   }
 }
-export async function useItem(token, proxy, id) {
+export async function useItem(token, proxy, itemId, id) {
   
-  const url = `https://fishing-frenzy-api-0c12a800fbfe.herokuapp.com/v1/items/66b1f692aaa0b594511c2db2/use?userId=${id}`;
+  const url = `https://fishing-frenzy-api-0c12a800fbfe.herokuapp.com/v1/items/${itemId}/use?userId=${id}`;
   try {
     return await fetchWithProxy(
       url,
@@ -139,5 +139,25 @@ export async function verifyQuest(token, id, proxy) {
   } catch (error) {
     console.error('Error verifying quest:', error);
     return null;
+  }
+}
+// Fetch inventory
+export async function getInventory(token, proxy) {
+  const url = 'https://fishing-frenzy-api-0c12a800fbfe.herokuapp.com/v1/inventory';
+  try {
+    return await fetchWithProxy(
+      url,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      },
+      proxy
+    );
+  } catch (error) {
+    console.error('Error fetching inventory:', error);
+    return [];
   }
 }
